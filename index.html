@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<style>
+		
+		* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 500px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.input-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 75%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 20%;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  background: #eee;
+  padding: 10px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 4px;
+}
+
+li button {
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+li button:hover {
+  background-color: #c82333;
+}
+
+@media (max-width: 500px) {
+  .input-section {
+    flex-direction: column;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  button {
+    width: auto;
+  }
+}
+
+
+	</style>
+
+  <div class="container">
+    <h1>To-Do List</h1>
+    <div class="input-section">
+      <input type="text" id="task-input" placeholder="Add your new task..." />
+      <button id="add-task-btn">Add Task</button>
+    </div>
+    <ul id="task-list"></ul>
+  </div>
+
+  <script>
+  	
+  	document.getElementById('add-task-btn').addEventListener('click', function() {
+  const taskInput = document.getElementById('task-input');
+  const taskValue = taskInput.value.trim();
+
+  if (taskValue) {
+    const taskList = document.getElementById('task-list');
+
+    // Create a new list item
+    const li = document.createElement('li');
+    li.textContent = taskValue;
+
+    // Create a delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.addEventListener('click', function() {
+      taskList.removeChild(li);
+    });
+
+    // Append the delete button to the list item
+    li.appendChild(deleteBtn);
+
+    // Append the list item to the task list
+    taskList.appendChild(li);
+
+    // Clear the input
+    taskInput.value = '';
+  }
+});
+
+
+  </script>
+</body>
+</html>
